@@ -1,11 +1,12 @@
 import unittest
 import animals
 
+
 class TestAnimal(unittest.TestCase):
     def setUp(self):
         self.animal = animals.Animal("tiger", 4, "DiviqLud", "male", 300)
 
-    def test_init(self, species, age, name, gender, weight):
+    def test_init(self):
         self.assertEqual(self.animal.species, "tiger")
         self.assertEqual(self.animal.age, 4)
         self.assertEqual(self.animal.name, "DiviqLud")
