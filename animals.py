@@ -11,6 +11,8 @@ class Animal:
         self.gender = gender
         self.weight = weight
         self.life_expectancy = 50
+        if self.gender == "female":
+            self.gestation_period = (self.age * 2) % 2
         self.chance_of_dying = self.age / self.life_expectancy
         for key in self.life_expectancies:
             if key == species:
