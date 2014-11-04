@@ -7,6 +7,7 @@ class Zoo:
         self.animals = []
         self.capacity = capacity
         self.budget = budget
+        self.foods = {"meat": 4, "grass": 2, "foilage": 2, "bamboo": 2}
 
     def accomodate_new_animal(self, animal1):
         if self.capacity == len(self.animals):
@@ -17,10 +18,13 @@ class Zoo:
         self.animals.append(animal1)
 
     def daily_income(self):
-        return 3 * len(self.animals)
+        return 60 * len(self.animals)
+        self.budget += 30 * 60 * len(self.animals)
 
-    def daily_outcome(self):
-        return 2 * len(self.animals)
+    def animal_eats(self, animal, food, kilos):
+        animal.eat(kilos)
+
+
 
     def die(self, animal):
         if animal.die():
