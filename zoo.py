@@ -31,8 +31,10 @@ class Zoo:
             return kilos*self.foods["grass"]
 
     def die(self, animal1):
-        if animal1.die() is True:
+        if animal1.die():
             self.animals.remove(animal1)
+            return True
+        return False
 
     def newborn(self, parent1, parent2, name):
         chance_gender = random()
