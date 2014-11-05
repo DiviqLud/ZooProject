@@ -46,7 +46,7 @@ class TestZooClass(unittest.TestCase):
         if self.sofia_zoo.die(self.panda):
             self.assertEqual(self.sofia_zoo.animals, [self.frog])
         else:
-            self.assertEqual(self.sofia_zoo.animals, [self.panda, self.frog])
+            self.assertEqual(self.sofia_zoo.animals, [self.panda, self.frog]).
 
     def test_newborn(self):
         the_panda = animals.Animal("panda", 5, "Ivo", "male", 55)
