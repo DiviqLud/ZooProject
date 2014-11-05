@@ -3,12 +3,8 @@ from random import random
 
 
 class Zoo:
-<<<<<<< HEAD
     MONEY_PER_ANIMAL = 60
     DAYS_IN_MONTH = 30
-=======
-
->>>>>>> 917dd575ad2db1c93d96f0e4256020a4f3a9d33f
 
     def __init__(self, capacity, budget):
         self.animals = []
