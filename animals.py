@@ -23,7 +23,7 @@ class Animal:
                 self.food_weight_ratio = animal["food/weight_ratio"]
         if self.gender == "female":
             self.start_pregnancy = 0
-        self.chance_of_dying = self.age / self.life_expectancy / 12
+        self.chance_of_dying = self.age / int(self.life_expectancy) / 12
 
     def grow(self, months):
         self.weight += self.weight_age_ratio * months
