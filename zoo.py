@@ -3,6 +3,8 @@ from random import random
 
 
 class Zoo:
+    
+
     def __init__(self, capacity, budget):
         self.animals = []
         self.capacity = capacity
@@ -50,10 +52,6 @@ class Zoo:
         self.name = name
 
     def reproduce(self, animal1, animal2, name):
-        if animal1.gender == "female":
-            female = animal1
-        if animal2.gender == "female":
-            female = animal2
         if animal1.gender != animal2.gender and animal1.species == animal2.species and not female.gestation_period:
             if animal1.age >= 2 and animal2.age >= 2:
-                self.newborn(animal1, animal2, name)
+                self.newborn(animal1, animal2)
