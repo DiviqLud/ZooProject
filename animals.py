@@ -3,11 +3,12 @@ import json
 
 
 class Animal:
-    species_database = json.load("database.json")
+    json_data = open("database.json")
+    species_database = json.load(json_data)
 
-    def __init__(self, species, age, name, gender, weight):
+    def __init__(self, species, month, name, gender, weight):
         self.species = species
-        self.age = age
+        self.age = month
         self.name = name
         self.gender = gender
         self.weight = weight
@@ -22,7 +23,7 @@ class Animal:
                 self.food_weight_ratio = animal["food/weight_ratio"]
         if self.gender == "female":
             self.start_pregnancy = 0
-        self.chance_of_dying = self.age / self.life_expectancy
+        self.chance_of_dying = self.age / self.life_expectancy / 12
 
     def grow(self, months):
         self.weight += self.weight_age_ratio * months

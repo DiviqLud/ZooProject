@@ -55,9 +55,12 @@ class TestZooClass(unittest.TestCase):
         self.sofia_zoo.newborn(the_panda, self.panda, "Richie")
         self.assertEqual(len(self.sofia_zoo.animals), 3)
 
-    #def test_give_name_to_newborn(self):
-    #    self.sofia_zoo.newborn()
-    #making tests for reproduce function and newborn
+    def test_give_name_to_newborn(self):
+        self.sofia_zoo.newborn()
+        the_panda = animals.Animal("panda", 5, "Ivo", "male", 55)
+        self.sofia_zoo.accomodate_new_animal(self.panda)
+        self.sofia_zoo.accomodate_new_animal(the_panda)
+        self.sofia_zoo.newborn(the_panda, self.panda, "Richie")
 
 if __name__ == '__main__':
     unittest.main()
