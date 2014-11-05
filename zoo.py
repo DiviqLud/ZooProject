@@ -58,6 +58,11 @@ class Zoo:
     def reproduce(self, animal1, animal2, name):
         same_gender = animal1.gender == animal2.gender
         same_species = animal1.species == animal2.species
-        if not same_gender and same_species:
-            if animal1.age >= 2 and animal2.age >= 2:
+        if animal1.gender == "female":
+            female = animal1
+        if animal2.gender == "female":
+            female = animal2
+        female_ready_to_reproduce = female.age >= 6 + female.start_pregnancy
+        if not same_gender and same_species and female_ready_to_reproduce:
                 self.newborn(animal1, animal2)
+                female.start_pregnancy = female.age
