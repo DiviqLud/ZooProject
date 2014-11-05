@@ -46,15 +46,13 @@ class TestZooClass(unittest.TestCase):
         if self.sofia_zoo.die(self.panda):
             self.assertEqual(self.sofia_zoo.animals, [self.frog])
         else:
-            self.assertEqual(self.sofia_zoo.animals, [self.panda, self.frog]).
+            self.assertEqual(self.sofia_zoo.animals, [self.panda, self.frog])
 
     def test_newborn(self):
         the_panda = animals.Animal("panda", 5, "Ivo", "male", 55)
         self.sofia_zoo.accomodate_new_animal(self.panda)
         self.sofia_zoo.accomodate_new_animal(the_panda)
-        #self.sofia_zoo.give_name_to_newborn("Richi")
         self.sofia_zoo.newborn(the_panda, self.panda, "Richie")
-        #self.sofia_zoo.reproduce(the_panda, self.panda)
         self.assertEqual(len(self.sofia_zoo.animals), 3)
 
     #def test_give_name_to_newborn(self):
