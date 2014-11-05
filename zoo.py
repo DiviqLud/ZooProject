@@ -1,10 +1,12 @@
 from animals import Animal
-from random import random
+from random import random, choice
 
 
 class Zoo:
     MONEY_PER_ANIMAL = 60
     DAYS_IN_MONTH = 30
+    LIST_OF_MALE_NAMES = ["Ivo", "Ico", "Emo", "Bob"]
+    LIST_OF_FEMALE_NAMES = ["Geri", "Ani", "Jeni", "Bori"]
 
     def __init__(self, capacity, budget):
         self.animals = []
@@ -26,20 +28,20 @@ class Zoo:
                 self.animals.remove(animal)
 
     def daily_income(self):
-        return self.MONEY_PER_ANIMAL * len(self.animals)
         self.budget += self.DAYS_IN_MONTH * self.MONEY_PER_ANIMAL * len(self.animals)
+        return self.MONEY_PER_ANIMAL * len(self.animals)
 
     def daily_outcome(self):
         outcome = 0
         for animal in self.animals:
             animal.eat()
-            eaten_food = self.weight * self.food_weight_ratio
+            eaten_food = animal.weight * animal.food_weight_ratio
             outcome += eaten_food
             if animal.food_type == "carnivore":
                 self.budget -= eaten_food * self.foods["meat"]
             else:
                 self.budget -= eaten_food * self.foods["grass"]
-        return outcome
+        return round(outcome, 2)
 
     def die(self, animal1):
         if animal1.die():
@@ -47,20 +49,25 @@ class Zoo:
             return True
         return False
 
-    def newborn(self, parent1, parent2, name):
+    def newborn(self, parent1, parent2):
         chance_gender = random()
         if chance_gender > 0.5:
             gender = "male"
         else:
             gender = "female"
         newborn = Animal(parent1.species, 0, None, gender, parent1.newborn_weight)
-        self.give_name_to_newborn(name)
-        self.animals.append(newborn)
+        if newborn.gender == "male":
+            self.give_name_to_newborn(self.LIST_OF_MALE_NAMES)
+        else:
+            self.give_name_to_newborn(self.LIST_OF_FEMALE_NAMES)
+        self.accomodate_new_animal(newborn)
 
-    def give_name_to_newborn(self, name):
-        self.name = name
+    def give_name_to_newborn(self, list_of_names):
+        name = choice(list_of_names)
+        list_of_names.remove(name)
+        return name
 
-    def reproduce(self, animal1, animal2, name):
+    def reproduce(self, animal1, animal2):
         same_gender = animal1.gender == animal2.gender
         same_species = animal1.species == animal2.species
         if animal1.gender == "female":
