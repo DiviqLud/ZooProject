@@ -1,9 +1,9 @@
 from random import random
+import json
 
 
 class Animal:
-    life_expectancies = {"panda": 100, "tiger": 30, "bear": 50}
-    average_weight = {"panda": 100, "tiger": 300, "bear": 400}
+    species_database = json.load("database.json")
 
     def __init__(self, species, age, name, gender, weight):
         self.species = species
@@ -11,27 +11,29 @@ class Animal:
         self.name = name
         self.gender = gender
         self.weight = weight
-        self.life_expectancy = 50
+        for animal in self.species_database["animals"]:
+            if animal["species"] == species:
+                self.life_expectancy = animal["life_expectancy"]
+                self.food_type = animal["food_type"]
+                self.gestation_period = animal["gestation_period"]
+                self.newborn_weight = animal["newborn_weight"]
+                self.average_weight = animal["average_weight"]
+                self.weight_age_ratio = animal["weight/age_ratio"]
+                self.food_weight_ratio = animal["food/weight_ratio"]
         if self.gender == "female":
-            self.gestation_period = (self.age * 2) % 2
+            self.start_pregnancy = 0
         self.chance_of_dying = self.age / self.life_expectancy
-        for key in self.life_expectancies:
-            if key == species:
-                self.life_expectancy = self.life_expectancies[key]
 
-    def grow(self, weight, years):
-        self.weight += weight
-        self.age += years
+    def grow(self, months):
+        self.weight += self.weight_age_ratio * months
+        self.age += months
 
-    def eat(self, weight):
-        for key in self.average_weight:
-            if key == self.species:
-                self.weight += weight / 4
-                if self.weight >= self.average_weight[key]:
-                    self.weight = self.average_weight[key]
-                    return self.weight
-                else:
-                    return self.weight
+    def eat(self):
+        for animal in self.species_database["animals"]:
+            if self.species == animal["species"]:
+                self.weight += self.weight * self.food_weight_ratio / 4
+                if self.weight >= self.average_weight:
+                    self.weight = self.average_weight
 
     def die(self):
         chance = random()
