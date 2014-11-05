@@ -3,6 +3,7 @@ from random import random
 
 class Animal:
     life_expectancies = {"panda": 100, "tiger": 30, "bear": 50}
+    average_weight = {"panda": 100, "tiger": 300, "bear": 400}
 
     def __init__(self, species, age, name, gender, weight):
         self.species = species
@@ -23,7 +24,14 @@ class Animal:
         self.age += years
 
     def eat(self, weight):
-        self.weight += weight / 4
+        for key in self.average_weight:
+            if key == self.species:
+                self.weight += weight / 4
+                if self.weight >= self.average_weight[key]:
+                    self.weight = self.average_weight[key]
+                    return self.weight
+                else:
+                    return self.weight
 
     def die(self):
         chance = random()
