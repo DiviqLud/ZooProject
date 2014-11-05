@@ -20,6 +20,11 @@ class Zoo:
                 raise ValueError("There is an animal with the same name")
         self.animals.append(animal)
 
+    def remove_animal(self, species, name):
+        for animal in self.animals:
+            if animal.species == species and animal.name == name:
+                self.animals.remove(animal)
+
     def daily_income(self):
         return self.MONEY_PER_ANIMAL * len(self.animals)
         self.budget += self.DAYS_IN_MONTH * self.MONEY_PER_ANIMAL * len(self.animals)
@@ -48,7 +53,7 @@ class Zoo:
             gender = "male"
         else:
             gender = "female"
-        newborn = Animal(parent1.species, 0, None, gender, 4)
+        newborn = Animal(parent1.species, 0, None, gender, parent1.newborn_weight)
         self.give_name_to_newborn(name)
         self.animals.append(newborn)
 
