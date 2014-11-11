@@ -57,15 +57,10 @@ class Zoo:
             gender = "female"
         newborn = Animal(parent1.species, 0, None, gender, parent1.newborn_weight)
         if newborn.gender == "male":
-            self.give_name_to_newborn(self.LIST_OF_MALE_NAMES)
+            newborn.give_name_to_newborn(self.LIST_OF_MALE_NAMES)
         else:
-            self.give_name_to_newborn(self.LIST_OF_FEMALE_NAMES)
+            newborn.give_name_to_newborn(self.LIST_OF_FEMALE_NAMES)
         self.accomodate_new_animal(newborn)
-
-    def give_name_to_newborn(self, list_of_names):
-        name = choice(list_of_names)
-        list_of_names.remove(name)
-        return name
 
     def reproduce(self, animal1, animal2):
         same_gender = animal1.gender == animal2.gender

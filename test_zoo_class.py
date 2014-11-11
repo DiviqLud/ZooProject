@@ -48,34 +48,36 @@ class TestZooClass(unittest.TestCase):
             self.assertEqual(self.sofia_zoo.animals, [self.panda, self.tiger])
 
     def test_newborn(self):
-        the_panda = animals.Animal("panda", 5, "Ivo", "male", 55)
+        the_panda = animals.Animal("panda", 5, "Georgi", "male", 55)
         self.sofia_zoo.accomodate_new_animal(self.panda)
         self.sofia_zoo.accomodate_new_animal(the_panda)
         self.sofia_zoo.newborn(the_panda, self.panda)
         self.assertEqual(len(self.sofia_zoo.animals), 3)
 
     def test_give_name_to_newborn(self):
-        the_panda = animals.Animal("panda", 5, "Ivo", "male", 55)
+        the_panda = animals.Animal("panda", 5, "Cezar", "male", 55)
         self.sofia_zoo.accomodate_new_animal(self.panda)
         self.sofia_zoo.accomodate_new_animal(the_panda)
         self.sofia_zoo.newborn(the_panda, self.panda)
+        for animal in self.sofia_zoo.animals:
+            print(animal.name)
 
     def test_reproduce_if_two_female(self):
-        the_panda = animals.Animal("panda", 5, "Ivo", "female", 55)
+        the_panda = animals.Animal("panda", 5, "Petur", "female", 55)
         self.sofia_zoo.accomodate_new_animal(self.panda)
         self.sofia_zoo.accomodate_new_animal(the_panda)
         self.sofia_zoo.reproduce(the_panda, self.panda)
         self.assertEqual(len(self.sofia_zoo.animals), 2)
 
     def test_normal_reproduce(self):
-        the_panda = animals.Animal("panda", 5, "Ivo", "male", 55)
+        the_panda = animals.Animal("panda", 5, "Koicho", "male", 55)
         self.sofia_zoo.accomodate_new_animal(self.panda)
         self.sofia_zoo.accomodate_new_animal(the_panda)
         self.sofia_zoo.reproduce(the_panda, self.panda)
         self.assertEqual(len(self.sofia_zoo.animals), 3)
 
     def test_reproduce_with_different_species(self):
-        the_tiger = animals.Animal("tiger", 5, "Ivo", "male", 55)
+        the_tiger = animals.Animal("tiger", 5, "Simba", "male", 55)
         self.sofia_zoo.accomodate_new_animal(self.panda)
         self.sofia_zoo.accomodate_new_animal(the_tiger)
         self.sofia_zoo.reproduce(the_tiger, self.panda)

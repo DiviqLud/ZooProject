@@ -1,4 +1,4 @@
-from random import random
+from random import random, choice
 import json
 
 
@@ -43,3 +43,8 @@ class Animal:
     def die(self):
         chance = random()
         return self.chance_of_dying > chance
+
+    def give_name_to_newborn(self, list_of_names):
+        self.name = choice(list_of_names)
+        list_of_names.remove(self.name)
+        return self.name
